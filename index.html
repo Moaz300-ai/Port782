@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع الألغاز والأسئلة</title>
+    <style>
+        /* تنسيق عام */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #e6eef5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* الترويسة */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .score-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 250px;
+        }
+        
+        .title {
+            color: #2196F3;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 10px;
+        }
+        
+        /* البطاقات والأقسام */
+        .main-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .welcome-title {
+            color: #2196F3;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .category {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+        }
+        
+        .category h3 {
+            color: #2196F3;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .category p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        /* الأزرار */
+        .btn {
+            display: inline-block;
+            background-color: #2196F3;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #0d8aee;
+        }
+        
+        .btn-puzzles {
+            background-color: #4CAF50;
+        }
+        
+        .btn-puzzles:hover {
+            background-color: #3e9142;
+        }
+        
+        .btn-general {
+            background-color: #2196F3;
+        }
+        
+        .btn-general:hover {
+            background-color: #0d8aee;
+        }
+        
+        .btn-islamic {
+            background-color: #9C27B0;
+        }
+        
+        .btn-islamic:hover {
+            background-color: #7B1FA2;
+        }
+        
+        /* قسم التعليمات */
+        .instructions {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .instructions h3 {
+            color: #2196F3;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .instructions ul {
+            list-style-type: none;
+            padding-right: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-right: 25px;
+        }
+        
+        .instructions li::before {
+            content: "•";
+            color: #2196F3;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 0;
+            top: -5px;
+        }
+        
+        /* نظام المستويات */
+        .levels {
+            margin-bottom: 30px;
+        }
+        
+        .levels h3 {
+            color: #2196F3;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .level-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .level-card {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 15px;
+            width: 16%;
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .level-number {
+            background-color: #2196F3;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+        
+        .level-1 .level-number { background-color: #2196F3; }
+        .level-2 .level-number { background-color: #4CAF50; }
+        .level-3 .level-number { background-color: #FF9800; }
+        .level-4 .level-number { background-color: #F44336; }
+        .level-5 .level-number { background-color: #9C27B0; }
+        .level-6 .level-number { background-color: #FFD700; }
+        
+        .level-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .level-points {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* التذييل */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .nav-btn {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .nav-btn.active {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .categories {
+                flex-direction: column;
+            }
+            
+            .category {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .level-card {
+                width: 48%;
+            }
+            
+            .score-container {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            header {
+                flex-direction: column-reverse;
+            }
+            
+            .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-btn {
+                margin: 5px;
+                font-size: 0.8rem;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .level-card {
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .instructions li {
+                font-size: 0.9rem;
+            }
+            
+            .level-cards {
+                justify-content: center;
+            }
+            
+            .level-card {
+                width: 80%;
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- الترويسة -->
+        <header>
+            <div class="score-container">
+                <p>النقاط: <span id="score">0</span></p>
+                <p>المستوى: <span id="level">1</span> <span id="level-name">مبتدئ</span></p>
+                <div style="background-color: #eee; height: 10px; border-radius: 5px; margin-top: 10px;">
+                    <div id="progress-bar" style="background-color: #2196F3; height: 100%; width: 0%; border-radius: 5px;"></div>
+                </div>
+            </div>
+            <h1 class="title">موقع الألغاز والأسئلة</h1>
+        </header>
+        
+        <!-- المحتوى الرئيسي -->
+        <main>
+            <section class="main-content">
+                <h2 class="welcome-title">مرحباً بك في موقع الألغاز والأسئلة</h2>
+                <p class="welcome-text">اختبر ذكاءك ومعلوماتك العامة ومعرفتك الدينية من خلال مجموعة متنوعة من الألغاز والأسئلة<br>
+                لكل إجابة صحيحة ستحصل على 30 نقطة، وكلما جمعت المزيد من النقاط سترتقي إلى مستويات أعلى!</p>
+                
+                <div class="categories">
+                    <div class="category">
+                        <h3>ألغاز للأذكياء</h3>
+                        <p>اختبر قدراتك العقلية مع مجموعة من الألغاز المحيرة</p>
+                        <button class="btn btn-puzzles" onclick="startPuzzles()">ابدأ الألغاز</button>
+                    </div>
+                    
+                    <div class="category">
+                        <h3>أسئلة عامة</h3>
+                        <p>اختبر معلوماتك العامة في مجالات متنوعة</p>
+                        <button class="btn btn-general" onclick="startGeneralQuestions()">ابدأ الأسئلة العامة</button>
+                    </div>
+                    
+                    <div class="category">
+                        <h3>أسئلة دينية</h3>
+                        <p>اختبر معرفتك في الدين الإسلامي</p>
+                        <button class="btn btn-islamic" onclick="startIslamicQuestions()">ابدأ الأسئلة الدينية</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- قسم التعليمات -->
+            <section class="instructions">
+                <h3>تعليمات</h3>
+                <ul>
+                    <li>اختر القسم الذي ترغب في اختبار معرفتك فيه</li>
+                    <li>اقرأ السؤال بعناية واختر الإجابة الصحيحة</li>
+                    <li>لكل إجابة صحيحة ستحصل على 30 نقطة</li>
+                    <li>يمكنك طلب تلميح في بعض الأسئلة</li>
+                    <li>كلما جمعت المزيد من النقاط سترتقي إلى مستويات أعلى</li>
+                    <li>يمكنك مشاهدة نتائجك وإحصائياتك في صفحة النتائج</li>
+                </ul>
+            </section>
+            
+            <!-- نظام المستويات -->
+            <section class="levels">
+                <h3>نظام المستويات</h3>
+                <div class="level-cards">
+                    <div class="level-card level-1">
+                        <div class="level-number">1</div>
+                        <div class="level-name">مبتدئ</div>
+                        <div class="level-points">0-150 نقطة</div>
+                    </div>
+                    
+                    <div class="level-card level-2">
+                        <div class="level-number">2</div>
+                        <div class="level-name">هاوٍ</div>
+                        <div class="level-points">151-300 نقطة</div>
+                    </div>
+                    
+                    <div class="level-card level-3">
+                        <div class="level-number">3</div>
+                        <div class="level-name">متقدم</div>
+                        <div class="level-points">301-600 نقطة</div>
+                    </div>
+                    
+                    <div class="level-card level-4">
+                        <div class="level-number">4</div>
+                        <div class="level-name">خبير</div>
+                        <div class="level-points">601-1000 نقطة</div>
+                    </div>
+                    
+                    <div class="level-card level-5">
+                        <div class="level-number">5</div>
+                        <div class="level-name">عبقري</div>
+                        <div class="level-points">1001-1500 نقطة</div>
+                    </div>
+                    
+                    <div class="level-card level-6">
+                        <div class="level-number">6</div>
+                        <div class="level-name">أسطورة</div>
+                        <div class="level-points">أكثر من 1500 نقطة</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- التذييل -->
+        <footer>
+            <div class="nav-buttons">
+                <a href="#" class="nav-btn active">الصفحة الرئيسية</a>
+                <a href="#" class="nav-btn" onclick="navigateTo('puzzles')">ألغاز للأذكياء</a>
+                <a href="#" class="nav-btn" onclick="navigateTo('general')">أسئلة عامة</a>
+                <a href="#" class="nav-btn" onclick="navigateTo('islamic')">أسئلة دينية</a>
+                <a href="#" class="nav-btn" onclick="navigateTo('results')">النتائج</a>
+            </div>
+            <p>جميع الحقوق محفوظة © 2025 - موقع الألغاز والأسئلة</p>
+        </footer>
+    </div>
+    
+    <script>
+        // متغيرات عامة
+        let score = 0;
+        let level = 1;
+        let levelName = "مبتدئ";
+        let answeredQuestions = {
+            puzzles: 0,
+            general: 0,
+            islamic: 0
+        };
+        
+        // بيانات الألغاز
+        const puzzles = [
+            {
+                id: 1,
+                question: "رجل وقع في البحر ولم يبتل شعره، كيف حدث ذلك؟",
+                options: ["كان يرتدي خوذة", "كان أصلع", "كان يسبح في الماء الضحل", "كان يحلم"],
+                answer: 1,
+                difficulty: "سهل",
+                hint: "فكر في شكل رأسه"
+            },
+            {
+                id: 2,
+                question: "ما هو الشيء الذي يمكن كسره دون أن تلمسه؟",
+                options: ["الزجاج", "الوعد", "الخشب", "الورق"],
+                answer: 1,
+                difficulty: "سهل",
+                hint: "شيء معنوي وليس مادي"
+            },
+            {
+                id: 3,
+                question: "ما هو الشيء الذي كلما زاد نقص؟",
+                options: ["الماء", "الوقت", "العمر", "المال"],
+                answer: 2,
+                difficulty: "سهل",
+                hint: "يرتبط بحياة الإنسان"
+            }
+        ];
+        
+        // بيانات الأسئلة العامة
+        const generalQuestions = [
+            {
+                id: 1,
+                question: "ما هو العنصر الكيميائي الأكثر وفرة في الكون؟",
+                options: ["الأكسجين", "الكربون", "الهيدروجين", "النيتروجين"],
+                answer: 2,
+                category: "علوم",
+                difficulty: "سهل"
+            },
+            {
+                id: 2,
+                question: "من هو أول رائد فضاء وصل إلى القمر؟",
+                options: ["يوري جاجارين", "نيل أرمسترونج", "باز ألدرين", "جون جلين"],
+                answer: 1,
+                category: "تاريخ",
+                difficulty: "سهل"
+            },
+            {
+                id: 3,
+                question: "ما هي أطول سلسلة جبال في العالم؟",
+                options: ["جبال الهيمالايا", "جبال الألب", "جبال الأنديز", "جبال روكي"],
+                answer: 2,
+                category: "جغرافيا",
+                difficulty: "متوسط"
+            }
+        ];
+        
+        // بيانات الأسئلة الدينية
+        const islamicQuestions = [
+            {
+                id: 1,
+                question: "ما هي أطول سورة في القرآن الكريم؟",
+                options: ["سورة البقرة", "سورة آل عمران", "سورة النساء", "سورة المائدة"],
+                answer: 0,
+                category: "قرآن",
+                difficulty: "سهل"
+            },
+            {
+                id: 2,
+                question: "ما هي أقصر سورة في القرآن الكريم؟",
+                options: ["سورة الإخلاص", "سورة الكوثر", "سورة العصر", "سورة الناس"],
+                answer: 1,
+                category: "قرآن",
+                difficulty: "سهل"
+            },
+            {
+                id: 3,
+                question: "كم عدد سور القرآن الكريم؟",
+                options: ["114", "112", "116", "110"],
+                answer: 0,
+                category: "قرآن",
+                difficulty: "سهل"
+            }
+        ];
+        
+        // المتغيرات الحالية للأسئلة
+        let currentQuestionType = null; // 'puzzles', 'general', 'islamic'
+        let currentQuestionIndex = 0;
+        let currentQuestion = null;
+        let currentFilter = "الكل";
+        
+        // تحديث النقاط والمستوى
+        function updateScore(points) {
+            score += points;
+            document.getElementById('score').textContent = score;
+            updateLevel();
+            updateProgressBar();
+            
+            // تحديث عدد الأسئلة المجاب عليها
+            if (currentQuestionType) {
+                answeredQuestions[currentQuestionType]++;
+            }
+            
+            // حفظ البيانات في التخزين المحلي
+            saveProgress();
+        }
+        
+        // حفظ التقدم في التخزين المحلي
+        function saveProgress() {
+            const progress = {
+                score,
+                level,
+                levelName,
+                answeredQuestions
+            };
+            
+            localStorage.setItem('quizProgress', JSON.stringify(progress));
+        }
+        
+        // استرجاع التقدم من التخزين المحلي
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('quizProgress');
+            
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                score = progress.score;
+                level = progress.level;
+                levelName = progress.levelName;
+                answeredQuestions = progress.answeredQuestions;
+                
+                document.getElementById('score').textContent = score;
+                document.getElementById('level').textContent = level;
+                document.getElementById('level-name').textContent = levelName;
+                
+                updateProgressBar();
+            }
+        }
+        
+        // تحديث المستوى بناءً على النقاط
+        function updateLevel() {
+            if (score <= 150) {
+                level = 1;
+                levelName = "مبتدئ";
+            } else if (score <= 300) {
+                level = 2;
+                levelName = "هاوٍ";
+            } else if (score <= 600) {
+                level = 3;
+                levelName = "متقدم";
+            } else if (score <= 1000) {
+                level = 4;
+                levelName = "خبير";
+            } else if (score <= 1500) {
+                level = 5;
+                levelName = "عبقري";
+            } else {
+                level = 6;
+                levelName = "أسطورة";
+            }
+            
+            document.getElementById('level').textContent = level;
+            document.getElementById('level-name').textContent = levelName;
+        }
+        
+        // تحديث شريط التقدم
+        function updateProgressBar() {
+            let nextLevelThreshold;
+            let currentLevelStart;
+            
+            if (level === 1) {
+                nextLevelThreshold = 151;
+                currentLevelStart = 0;
+            } else if (level === 2) {
+                nextLevelThreshold = 301;
+                currentLevelStart = 151;
+            } else if (level === 3) {
+                nextLevelThreshold = 601;
+                currentLevelStart = 301;
+            } else if (level === 4) {
+                nextLevelThreshold = 1001;
+                currentLevelStart = 601;
+            } else if (level === 5) {
+                nextLevelThreshold = 1501;
+                currentLevelStart = 1001;
+            } else {
+                // للمستوى الأسطورة، نعرض شريط تقدم كامل
+                document.getElementById('progress-bar').style.width = '100%';
+                return;
+            }
+            
+            const levelRange = nextLevelThreshold - currentLevelStart;
+            const progress = score - currentLevelStart;
+            const percentage = (progress / levelRange) * 100;
+            
+            document.getElementById('progress-bar').style.width = percentage + '%';
+        }
+        
+        // عرض نموذج الإجابة على السؤال
+        function showQuestionModal(questionType, questionId) {
+            currentQuestionType = questionType;
+            
+            let questionData;
+            let questionList;
+            
+            if (questionType === 'puzzles') {
+                questionList = puzzles;
+                questionData = puzzles.find(p => p.id === questionId);
+            } else if (questionType === 'general') {
+                questionList = generalQuestions;
+                questionData = generalQuestions.find(q => q.id === questionId);
+            } else if (questionType === 'islamic') {
+                questionList = islamicQuestions;
+                questionData = islamicQuestions.find(q => q.id === questionId);
+            }
+            
+            if (!questionData) {
+                alert('لم يتم العثور على السؤال');
+                return;
+            }
+            
+            currentQuestion = questionData;
+            currentQuestionIndex = questionList.indexOf(questionData);
+            
+            // إنشاء نموذج الإجابة
+            const modal = document.createElement('div');
+            modal.className = 'question-modal';
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            modal.style.display = 'flex';
+            modal.style.justifyContent = 'center';
+            modal.style.alignItems = 'center';
+            modal.style.zIndex = '1000';
+            
+            const modalContent = document.createElement('div');
+            modalContent.className = 'modal-content';
+            modalContent.style.backgroundColor = 'white';
+            modalContent.style.borderRadius = '10px';
+            modalContent.style.padding = '30px';
+            modalContent.style.width = '80%';
+            modalContent.style.maxWidth = '600px';
+            modalContent.style.maxHeight = '80%';
+            modalContent.style.overflow = 'auto';
+            modalContent.style.position = 'relative';
+            
+            const closeButton = document.createElement('button');
+            closeButton.innerHTML = '&times;';
+            closeButton.style.position = 'absolute';
+            closeButton.style.top = '10px';
+            closeButton.style.left = '10px';
+            closeButton.style.border = 'none';
+            closeButton.style.background = 'none';
+            closeButton.style.fontSize = '24px';
+            closeButton.style.cursor = 'pointer';
+            closeButton.onclick = function() {
+                document.body.removeChild(modal);
+            };
+            
+            const questionTitle = document.createElement('h3');
+            questionTitle.textContent = questionData.question;
+            questionTitle.style.marginBottom = '20px';
+            questionTitle.style.textAlign = 'center';
+            
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options-container';
+            optionsContainer.style.marginBottom = '20px';
+            
+            // إنشاء خيارات الإجابة
+            questionData.options.forEach((option, index) => {
+                const optionButton = document.createElement('button');
+                optionButton.className = 'option-btn';
+                optionButton.textContent = option;
+                optionButton.style.display = 'block';
+                optionButton.style.width = '100%';
+                optionButton.style.padding = '15px';
+                optionButton.style.marginBottom = '10px';
+                optionButton.style.borderRadius = '5px';
+                optionButton.style.border = '1px solid #ddd';
+                optionButton.style.backgroundColor = '#f9f9f9';
+                optionButton.style.cursor = 'pointer';
+                optionButton.style.textAlign = 'right';
+                
+                optionButton.onclick = function() {
+                    // تحديد الإجابة المختارة
+                    const optionButtons = optionsContainer.querySelectorAll('.option-btn');
+                    optionButtons.forEach(btn => {
+                        btn.style.backgroundColor = '#f9f9f9';
+                        btn.style.color = '#333';
+                    });
+                    
+                    optionButton.style.backgroundColor = '#2196F3';
+                    optionButton.style.color = 'white';
+                    
+                    // تفعيل زر التحقق
+                    checkAnswerButton.disabled = false;
+                    checkAnswerButton.style.opacity = '1';
+                    
+                    // تخزين الإجابة المختارة
+                    selectedAnswerIndex = index;
+                };
+                
+                optionsContainer.appendChild(optionButton);
+            });
+            
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.style.display = 'flex';
+            buttonsContainer.style.justifyContent = 'space-between';
+            buttonsContainer.style.marginTop = '20px';
+            
+            // زر طلب تلميح
+            const hintButton = document.createElement('button');
+            hintButton.className = 'btn';
+            hintButton.textContent = 'أظهر التلميح';
+            hintButton.style.backgroundColor = '#FF9800';
+            
+            if (!questionData.hint) {
+                hintButton.disabled = true;
+                hintButton.style.opacity = '0.5';
+            }
+            
+            hintButton.onclick = function() {
+                if (questionData.hint) {
+                    const hintContainer = document.createElement('div');
+                    hintContainer.className = 'hint-container';
+                    hintContainer.style.backgroundColor = '#FFF3E0';
+                    hintContainer.style.padding = '15px';
+                    hintContainer.style.borderRadius = '5px';
+                    hintContainer.style.marginTop = '15px';
+                    hintContainer.style.marginBottom = '15px';
+                    
+                    const hintText = document.createElement('p');
+                    hintText.textContent = 'تلميح: ' + questionData.hint;
+                    
+                    hintContainer.appendChild(hintText);
+                    
+                    // إضافة التلميح بعد خيارات الإجابة
+                    if (!document.querySelector('.hint-container')) {
+                        optionsContainer.after(hintContainer);
+                    }
+                    
+                    // تعطيل زر التلميح بعد استخدامه
+                    hintButton.disabled = true;
+                    hintButton.style.opacity = '0.5';
+                }
+            };
+            
+            // زر التحقق من الإجابة
+            let selectedAnswerIndex = -1;
+            const checkAnswerButton = document.createElement('button');
+            checkAnswerButton.className = 'btn';
+            checkAnswerButton.textContent = 'تحقق من الإجابة';
+            checkAnswerButton.style.backgroundColor = '#4CAF50';
+            checkAnswerButton.disabled = true;
+            checkAnswerButton.style.opacity = '0.5';
+            
+            checkAnswerButton.onclick = function() {
+                if (selectedAnswerIndex === -1) return;
+                
+                const optionButtons = optionsContainer.querySelectorAll('.option-btn');
+                
+                // تحديد الإجابة الصحيحة والخاطئة
+                optionButtons.forEach((btn, index) => {
+                    if (index === questionData.answer) {
+                        btn.style.backgroundColor = '#4CAF50';
+                        btn.style.color = 'white';
+                    } else if (index === selectedAnswerIndex) {
+                        btn.style.backgroundColor = '#F44336';
+                        btn.style.color = 'white';
+                    }
+                });
+                
+                // إظهار نتيجة الإجابة
+                const resultContainer = document.createElement('div');
+                resultContainer.style.marginTop = '20px';
+                resultContainer.style.padding = '15px';
+                resultContainer.style.borderRadius = '5px';
+                resultContainer.style.textAlign = 'center';
+                
+                if (selectedAnswerIndex === questionData.answer) {
+                    resultContainer.style.backgroundColor = '#E8F5E9';
+                    resultContainer.textContent = 'إجابة صحيحة! +30 نقطة';
+                    updateScore(30);
+                } else {
+                    resultContainer.style.backgroundColor = '#FFEBEE';
+                    resultContainer.textContent = 'إجابة خاطئة. الإجابة الصحيحة هي: ' + questionData.options[questionData.answer];
+                }
+                
+                modalContent.appendChild(resultContainer);
+                
+                // تعطيل أزرار الخيارات والتحقق
+                optionButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.cursor = 'default';
+                });
+                
+                checkAnswerButton.disabled = true;
+                checkAnswerButton.style.opacity = '0.5';
+                
+                // إظهار زر السؤال التالي
+                nextQuestionButton.style.display = 'block';
+            };
+            
+            // زر السؤال التالي
+            const nextQuestionButton = document.createElement('button');
+            nextQuestionButton.className = 'btn';
+            nextQuestionButton.textContent = 'السؤال التالي';
+            nextQuestionButton.style.backgroundColor = '#2196F3';
+            nextQuestionButton.style.display = 'none';
+            nextQuestionButton.style.margin = '20px auto 0';
+            
+            nextQuestionButton.onclick = function() {
+                document.body.removeChild(modal);
+                
+                // الانتقال إلى السؤال التالي
+                if (questionType === 'puzzles' && currentQuestionIndex < puzzles.length - 1) {
+                    showQuestionModal('puzzles', puzzles[currentQuestionIndex + 1].id);
+                } else if (questionType === 'general' && currentQuestionIndex < generalQuestions.length - 1) {
+                    showQuestionModal('general', generalQuestions[currentQuestionIndex + 1].id);
+                } else if (questionType === 'islamic' && currentQuestionIndex < islamicQuestions.length - 1) {
+                    showQuestionModal('islamic', islamicQuestions[currentQuestionIndex + 1].id);
+                } else {
+                    // العودة إلى الصفحة الرئيسية إذا كان هذا آخر سؤال
+                    alert('لقد أكملت جميع الأسئلة في هذا القسم!');
+                }
+            };
+            
+            // إضافة العناصر إلى النموذج
+            buttonsContainer.appendChild(hintButton);
+            buttonsContainer.appendChild(checkAnswerButton);
+            
+            modalContent.appendChild(closeButton);
+            modalContent.appendChild(questionTitle);
+            modalContent.appendChild(optionsContainer);
+            modalContent.appendChild(buttonsContainer);
+            modalContent.appendChild(nextQuestionButton);
+            
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+        }
+        
+        // عرض صفحة النتائج
+        function showResults() {
+            // إخفاء المحتوى الرئيسي
+            document.querySelector('main').style.display = 'none';
+            
+            // إنشاء صفحة النتائج
+            const resultsPage = document.createElement('div');
+            resultsPage.className = 'results-page';
+            
+            const resultsTitle = document.createElement('h2');
+            resultsTitle.className = 'welcome-title';
+            resultsTitle.textContent = 'النتائج والإحصائيات';
+            
+            const summarySection = document.createElement('section');
+            summarySection.className = 'main-content';
+            
+            const summaryTitle = document.createElement('h3');
+            summaryTitle.textContent = 'ملخص النتائج';
+            summaryTitle.style.color = '#2196F3';
+            summaryTitle.style.marginBottom = '20px';
+            
+            const totalPointsDiv = document.createElement('div');
+            totalPointsDiv.style.marginBottom = '15px';
+            totalPointsDiv.style.textAlign = 'center';
+            
+            const totalPointsLabel = document.createElement('h4');
+            totalPointsLabel.textContent = 'النقاط الإجمالية';
+            totalPointsLabel.style.marginBottom = '5px';
+            
+            const totalPointsValue = document.createElement('p');
+            totalPointsValue.textContent = score;
+            totalPointsValue.style.fontSize = '24px';
+            totalPointsValue.style.fontWeight = 'bold';
+            
+            totalPointsDiv.appendChild(totalPointsLabel);
+            totalPointsDiv.appendChild(totalPointsValue);
+            
+            const currentLevelDiv = document.createElement('div');
+            currentLevelDiv.style.marginBottom = '15px';
+            currentLevelDiv.style.textAlign = 'center';
+            
+            const currentLevelLabel = document.createElement('h4');
+            currentLevelLabel.textContent = 'المستوى الحالي';
+            currentLevelLabel.style.marginBottom = '5px';
+            
+            const currentLevelValue = document.createElement('p');
+            currentLevelValue.textContent = levelName;
+            currentLevelValue.style.fontSize = '24px';
+            currentLevelValue.style.fontWeight = 'bold';
+            
+            currentLevelDiv.appendChild(currentLevelLabel);
+            currentLevelDiv.appendChild(currentLevelValue);
+            
+            const answeredQuestionsDiv = document.createElement('div');
+            answeredQuestionsDiv.style.marginBottom = '15px';
+            answeredQuestionsDiv.style.textAlign = 'center';
+            
+            const answeredQuestionsLabel = document.createElement('h4');
+            answeredQuestionsLabel.textContent = 'الأسئلة المجاب عليها';
+            answeredQuestionsLabel.style.marginBottom = '5px';
+            
+            const answeredQuestionsValue = document.createElement('p');
+            const totalAnswered = answeredQuestions.puzzles + answeredQuestions.general + answeredQuestions.islamic;
+            answeredQuestionsValue.textContent = totalAnswered;
+            answeredQuestionsValue.style.fontSize = '24px';
+            answeredQuestionsValue.style.fontWeight = 'bold';
+            
+            answeredQuestionsDiv.appendChild(answeredQuestionsLabel);
+            answeredQuestionsDiv.appendChild(answeredQuestionsValue);
+            
+            summarySection.appendChild(summaryTitle);
+            summarySection.appendChild(totalPointsDiv);
+            summarySection.appendChild(currentLevelDiv);
+            summarySection.appendChild(answeredQuestionsDiv);
+            
+            // إضافة إحصائيات حسب الفئة
+            const categoryStatsSection = document.createElement('section');
+            categoryStatsSection.className = 'main-content';
+            
+            const categoryStatsTitle = document.createElement('h3');
+            categoryStatsTitle.textContent = 'الإحصائيات حسب الفئة';
+            categoryStatsTitle.style.color = '#2196F3';
+            categoryStatsTitle.style.marginBottom = '20px';
+            
+            // إحصائيات الألغاز
+            const puzzlesStatsDiv = document.createElement('div');
+            puzzlesStatsDiv.style.marginBottom = '20px';
+            
+            const puzzlesStatsTitle = document.createElement('h4');
+            puzzlesStatsTitle.textContent = 'ألغاز للأذكياء';
+            puzzlesStatsTitle.style.marginBottom = '10px';
+            
+            const puzzlesAnsweredDiv = document.createElement('div');
+            puzzlesAnsweredDiv.style.marginBottom = '5px';
+            puzzlesAnsweredDiv.textContent = 'الأسئلة المجاب عليها: ' + answeredQuestions.puzzles;
+            
+            const puzzlesPointsDiv = document.createElement('div');
+            puzzlesPointsDiv.textContent = 'النقاط المكتسبة: ' + (answeredQuestions.puzzles * 30);
+            
+            puzzlesStatsDiv.appendChild(puzzlesStatsTitle);
+            puzzlesStatsDiv.appendChild(puzzlesAnsweredDiv);
+            puzzlesStatsDiv.appendChild(puzzlesPointsDiv);
+            
+            // إحصائيات الأسئلة العامة
+            const generalStatsDiv = document.createElement('div');
+            generalStatsDiv.style.marginBottom = '20px';
+            
+            const generalStatsTitle = document.createElement('h4');
+            generalStatsTitle.textContent = 'أسئلة عامة';
+            generalStatsTitle.style.marginBottom = '10px';
+            
+            const generalAnsweredDiv = document.createElement('div');
+            generalAnsweredDiv.style.marginBottom = '5px';
+            generalAnsweredDiv.textContent = 'الأسئلة المجاب عليها: ' + answeredQuestions.general;
+            
+            const generalPointsDiv = document.createElement('div');
+            generalPointsDiv.textContent = 'النقاط المكتسبة: ' + (answeredQuestions.general * 30);
+            
+            generalStatsDiv.appendChild(generalStatsTitle);
+            generalStatsDiv.appendChild(generalAnsweredDiv);
+            generalStatsDiv.appendChild(generalPointsDiv);
+            
+            // إحصائيات الأسئلة الدينية
+            const islamicStatsDiv = document.createElement('div');
+            islamicStatsDiv.style.marginBottom = '20px';
+            
+            const islamicStatsTitle = document.createElement('h4');
+            islamicStatsTitle.textContent = 'أسئلة دينية';
+            islamicStatsTitle.style.marginBottom = '10px';
+            
+            const islamicAnsweredDiv = document.createElement('div');
+            islamicAnsweredDiv.style.marginBottom = '5px';
+            islamicAnsweredDiv.textContent = 'الأسئلة المجاب عليها: ' + answeredQuestions.islamic;
+            
+            const islamicPointsDiv = document.createElement('div');
+            islamicPointsDiv.textContent = 'النقاط المكتسبة: ' + (answeredQuestions.islamic * 30);
+            
+            islamicStatsDiv.appendChild(islamicStatsTitle);
+            islamicStatsDiv.appendChild(islamicAnsweredDiv);
+            islamicStatsDiv.appendChild(islamicPointsDiv);
+            
+            categoryStatsSection.appendChild(categoryStatsTitle);
+            categoryStatsSection.appendChild(puzzlesStatsDiv);
+            categoryStatsSection.appendChild(generalStatsDiv);
+            categoryStatsSection.appendChild(islamicStatsDiv);
+            
+            // أزرار التحكم
+            const controlButtonsDiv = document.createElement('div');
+            controlButtonsDiv.style.display = 'flex';
+            controlButtonsDiv.style.justifyContent = 'space-between';
+            controlButtonsDiv.style.marginTop = '30px';
+            
+            const backToHomeButton = document.createElement('button');
+            backToHomeButton.className = 'btn';
+            backToHomeButton.textContent = 'العودة إلى الصفحة الرئيسية';
+            backToHomeButton.style.backgroundColor = '#2196F3';
+            
+            backToHomeButton.onclick = function() {
+                document.querySelector('.container').removeChild(resultsPage);
+                document.querySelector('main').style.display = 'block';
+            };
+            
+            const resetProgressButton = document.createElement('button');
+            resetProgressButton.className = 'btn';
+            resetProgressButton.textContent = 'إعادة تعيين التقدم';
+            resetProgressButton.style.backgroundColor = '#F44336';
+            
+            resetProgressButton.onclick = function() {
+                if (confirm('هل أنت متأكد من رغبتك في إعادة تعيين جميع التقدم؟ سيتم فقدان جميع النقاط والإحصائيات.')) {
+                    // إعادة تعيين المتغيرات
+                    score = 0;
+                    level = 1;
+                    levelName = "مبتدئ";
+                    answeredQuestions = {
+                        puzzles: 0,
+                        general: 0,
+                        islamic: 0
+                    };
+                    
+                    // تحديث العرض
+                    document.getElementById('score').textContent = score;
+                    document.getElementById('level').textContent = level;
+                    document.getElementById('level-name').textContent = levelName;
+                    updateProgressBar();
+                    
+                    // حذف البيانات من التخزين المحلي
+                    localStorage.removeItem('quizProgress');
+                    
+                    // إعادة تحميل صفحة النتائج
+                    document.querySelector('.container').removeChild(resultsPage);
+                    showResults();
+                }
+            };
+            
+            controlButtonsDiv.appendChild(backToHomeButton);
+            controlButtonsDiv.appendChild(resetProgressButton);
+            
+            // إضافة جميع العناصر إلى صفحة النتائج
+            resultsPage.appendChild(resultsTitle);
+            resultsPage.appendChild(summarySection);
+            resultsPage.appendChild(categoryStatsSection);
+            resultsPage.appendChild(controlButtonsDiv);
+            
+            // إضافة صفحة النتائج إلى الصفحة
+            document.querySelector('.container').appendChild(resultsPage);
+        }
+        
+        // التنقل بين الصفحات
+        function navigateTo(page) {
+            if (page === 'puzzles') {
+                startPuzzles();
+            } else if (page === 'general') {
+                startGeneralQuestions();
+            } else if (page === 'islamic') {
+                startIslamicQuestions();
+            } else if (page === 'results') {
+                showResults();
+            } else if (page === 'home') {
+                // إظهار الصفحة الرئيسية
+                document.querySelector('main').style.display = 'block';
+                
+                // إزالة أي صفحات أخرى
+                const resultsPage = document.querySelector('.results-page');
+                if (resultsPage) {
+                    document.querySelector('.container').removeChild(resultsPage);
+                }
+            }
+            
+            // تحديث حالة أزرار التنقل
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('active');
+                
+                if (page === 'home' && btn.textContent === 'الصفحة الرئيسية') {
+                    btn.classList.add('active');
+                } else if (page === 'puzzles' && btn.textContent === 'ألغاز للأذكياء') {
+                    btn.classList.add('active');
+                } else if (page === 'general' && btn.textContent === 'أسئلة عامة') {
+                    btn.classList.add('active');
+                } else if (page === 'islamic' && btn.textContent === 'أسئلة دينية') {
+                    btn.classList.add('active');
+                } else if (page === 'results' && btn.textContent === 'النتائج') {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        // بدء الألغاز
+        function startPuzzles() {
+            // عرض أول لغز
+            showQuestionModal('puzzles', 1);
+        }
+        
+        // بدء الأسئلة العامة
+        function startGeneralQuestions() {
+            // عرض أول سؤال عام
+            showQuestionModal('general', 1);
+        }
+        
+        // بدء الأسئلة الدينية
+        function startIslamicQuestions() {
+            // عرض أول سؤال ديني
+            showQuestionModal('islamic', 1);
+        }
+        
+        // تهيئة الصفحة
+        window.onload = function() {
+            // تحميل التقدم المحفوظ
+            loadProgress();
+            
+            // تحديث شريط التقدم
+            updateProgressBar();
+            
+            // إضافة مستمعي الأحداث لأزرار التنقل
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    if (btn.textContent === 'الصفحة الرئيسية') {
+                        navigateTo('home');
+                    } else if (btn.textContent === 'ألغاز للأذكياء') {
+                        navigateTo('puzzles');
+                    } else if (btn.textContent === 'أسئلة عامة') {
+                        navigateTo('general');
+                    } else if (btn.textContent === 'أسئلة دينية') {
+                        navigateTo('islamic');
+                    } else if (btn.textContent === 'النتائج') {
+                        navigateTo('results');
+                    }
+                });
+            });
+        };
+    </script>
+</body>
+</html>
